@@ -7,7 +7,18 @@ import { useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import SearchHeader from '../../components/SearchHeader/index';
 
-export default function Home({ searchResultArray, searchedText }) {
+type Result = {
+  id: string;
+  name: string;
+  type: string;
+};
+
+type HomeProps = {
+  searchResultArray: Result[];
+  searchedText;
+};
+
+export default function Home({ searchResultArray, searchedText }: HomeProps) {
   const [searchText, setSearchText] = useState(`${searchedText}`);
 
   const lastSearch = searchedText;
@@ -29,7 +40,7 @@ export default function Home({ searchResultArray, searchedText }) {
 
           {searchResultArray?.length > 0 ? (
             searchResultArray.map(result => (
-              <Box mb="2">
+              <Box key={result.id} mb="2">
                 <Text fontSize="2xl" color="green.400">
                   {result.name}
                 </Text>
@@ -61,6 +72,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       method: 'get',
       url: `https://mystique-v2-americanas.juno.b2w.io/autocomplete?source=nanook&content=${searchText}`,
     }).then(function (response) {
+      console.log(response.data);
+
       return response.data;
     });
 
