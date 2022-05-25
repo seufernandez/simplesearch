@@ -5,7 +5,6 @@ import {
   Icon,
   Input,
   InputGroup,
-  Spacer,
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
