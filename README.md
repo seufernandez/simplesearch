@@ -12,6 +12,7 @@ your "Keep It Simple and Stupid" searcher!
  - NextJS
  - Chakra UI
  - Framer Motion
+ - Jest
 
 
 ## 🪐 Running
